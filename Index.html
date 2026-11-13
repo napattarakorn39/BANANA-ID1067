@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BaNANA ID:1067</title>
+    <!-- นำเข้า Tailwind CSS สำหรับจัดหน้าตาให้สวยงาม -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- นำเข้า Font Awesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- นำเข้า Chart.js สำหรับทำกราฟ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ตั้งค่าฟอนต์ภาษาไทย -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Kanit', 'sans-serif'] },
+                    colors: { banana: '#FFD700', bananaDark: '#E6C200' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f8fafc; }
+        /* ซ่อน Scrollbar แต่ยังเลื่อนได้ */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- แถบด้านบน (Header) -->
+    <nav class="bg-black text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="bg-banana text-black font-bold text-xl px-3 py-1 rounded-md mr-3 shadow-sm">
+                        <i class="fa-solid fa-store mr-1"></i> BaNANA
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-sm sm:text-base leading-tight">Future Park Rangsit 2.1</h1>
+                        <p class="text-xs text-gray-400">Store ID: 1067 | วันนี้: 14 พ.ย. 2569</p>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="p-2 rounded-full hover:bg-gray-800 transition"><i class="fa-solid fa-bell text-gray-300"></i></button>
+                    <div class="w-8 h-8 rounded-full bg-gray-600 ml-3 flex items-center justify-center border-2 border-banana">
+                        <i class="fa-solid fa-user text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- พื้นที่เนื้อหาหลัก -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        
+        <!-- เมนูแท็บ (Tabs) -->
+        <div class="flex overflow-x-auto mb-6 pb-2 space-x-2 border-b border-gray-200">
+            <button class="px-4 py-2 bg-banana text-black font-semibold rounded-full shadow-sm whitespace-nowrap text-sm"><i class="fa-solid fa-chart-line mr-2"></i>สรุปยอดขายรวม</button>
+            <button class="px-4 py-2 bg-white text-gray-600 hover:bg-gray-100 font-medium rounded-full border border-gray-200 whitespace-nowrap text-sm transition"><i class="fa-solid fa-money-bill-wave mr-2"></i>Incentive พนักงาน</button>
+            <button class="px-4 py-2 bg-white text-gray-600 hover:bg-gray-100 font-medium rounded-full border border-gray-200 whitespace-nowrap text-sm transition"><i class="fa-solid fa-clock mr-2"></i>ไล่ยอดรายชั่วโมง</button>
+            <button class="px-4 py-2 bg-white text-gray-600 hover:bg-gray-100 font-medium rounded-full border border-gray-200 whitespace-nowrap text-sm transition"><i class="fa-solid fa-boxes-stacked mr-2"></i>แบ่งตามหมวดหมู่</button>
+        </div>
+
+        <!-- การ์ดสรุปตัวเลข (KPI Cards) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <!-- การ์ด 1: ยอดขายวันนี้ -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 w-16 h-16 bg-green-100 rounded-full opacity-50"></div>
+                <p class="text-xs text-gray-500 font-medium mb-1">ยอดขายวันนี้ (บาท)</p>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-800">185,400</h3>
+                <p class="text-xs text-green-500 font-medium mt-2"><i class="fa-solid fa-arrow-up mr-1"></i>+12% จากเมื่อวาน</p>
+            </div>
+            
+            <!-- การ์ด 2: เป้าหมาย (Target) -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 relative overflow-hidden">
+                <p class="text-xs text-gray-500 font-medium mb-1">ความสำเร็จของเป้า (MTD)</p>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-800">82.5<span class="text-lg text-gray-500">%</span></h3>
+                <div class="w-full bg-gray-200 rounded-full h-1.5 mt-3">
+                    <div class="bg-blue-500 h-1.5 rounded-full" style="width: 82.5%"></div>
+                </div>
+            </div>
+
+            <!-- การ์ด 3: จำนวนบิล -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                <p class="text-xs text-gray-500 font-medium mb-1">จำนวนบิลทั้งหมด</p>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-800">42 <span class="text-sm font-normal text-gray-500">บิล</span></h3>
+                <p class="text-xs text-gray-400 mt-2">ยอดเฉลี่ย 4,414 บ./บิล</p>
+            </div>
+
+            <!-- การ์ด 4: พนักงานขาย -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <p class="text-xs text-gray-500 font-medium mb-1">สถานะทีม (PC)</p>
+                    <h3 class="text-lg font-bold text-slate-800">เข้างาน 5 / 6 คน</h3>
+                </div>
+                <div class="flex -space-x-2 mt-2">
+                    <img class="w-7 h-7 rounded-full border-2 border-white" src="https://ui-avatars.com/api/?name=A&background=random" alt="PC 1">
+                    <img class="w-7 h-7 rounded-full border-2 border-white" src="https://ui-avatars.com/api/?name=B&background=random" alt="PC 2">
+                    <img class="w-7 h-7 rounded-full border-2 border-white" src="https://ui-avatars.com/api/?name=C&background=random" alt="PC 3">
+                    <div class="w-7 h-7 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-[10px] text-gray-500 font-medium">+2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ส่วนกราฟ (Charts Section) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- กราฟรายชั่วโมง -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 lg:col-span-2">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="font-bold text-slate-800"><i class="fa-solid fa-chart-column text-bananaDark mr-2"></i>ยอดขายจำแนกรายชั่วโมง</h2>
+                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-md font-medium">อัปเดตล่าสุด: 15:30 น.</span>
+                </div>
+                <div class="relative h-64 w-full">
+                    <canvas id="hourlyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- กราฟหมวดหมู่สินค้า -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                <h2 class="font-bold text-slate-800 mb-4"><i class="fa-solid fa-pie-chart text-bananaDark mr-2"></i>สัดส่วนยอดขายตามหมวด</h2>
+                <div class="relative h-48 w-full flex justify-center">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <!-- ตารางเล็ก -->
+                <div class="mt-4 space-y-2">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-slate-800 mr-2"></span>Apple</span>
+                        <span class="font-semibold">฿85,000</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span>Notebook</span>
+                        <span class="font-semibold">฿60,400</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-banana mr-2"></span>SMP & Acc</span>
+                        <span class="font-semibold">฿40,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Script ควบคุมการสร้างกราฟด้วย Chart.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // กราฟรายชั่วโมง
+            const ctxHourly = document.getElementById('hourlyChart').getContext('2d');
+            new Chart(ctxHourly, {
+                type: 'bar',
+                data: {
+                    labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                    datasets: [{
+                        label: 'ยอดขาย (บาท)',
+                        data: [15000, 28000, 45000, 32000, 20000, 45400, null, null], // null คือเวลายังมาไม่ถึง
+                        backgroundColor: '#FFD700', // สีเหลือง BaNANA
+                        borderRadius: 4,
+                        barThickness: 24
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [4, 4] } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // กราฟสัดส่วนหมวดหมู่
+            const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+            new Chart(ctxCategory, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Apple', 'Notebook', 'SMP & Acc'],
+                    datasets: [{
+                        data: [85000, 60400, 40000],
+                        backgroundColor: ['#1e293b', '#94a3b8', '#FFD700'], // ดำ, เทา, เหลือง
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
